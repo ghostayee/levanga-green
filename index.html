@@ -1,381 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EUWEB GREEN • PresentationSpace</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EUWEB GREEN • PresentationSpace</title>
+    <link rel="stylesheet" href="style.css">
 
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    :root {
-      --green-main:    #0a8a4a;
-      --green-dark:    #086c3a;
-      --green-light:   #d4f0d9;
-      --green-very-light: #e8f7eb;
-      --blue-main:     #1a73e8;
-      --text-main:     #2d2d2d;
-      --shadow-sm:     0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--green-very-light);
-      color: var(--text-main);
-      line-height: 1.6;
-      margin: 0;
-      padding-top: 110px;           /* space for fixed menus on desktop */
-    }
-
-    @media (max-width: 991px) {
-      body { padding-top: 70px; }   /* collapsed menus take less space */
-    }
-
-    /* Top menus */
-    #jwt-top-menu {
-      background: linear-gradient(90deg, var(--green-main), var(--green-dark));
-      box-shadow: var(--shadow-sm);
-      z-index: 1030;
-    }
-
-    #pcrr-submenu {
-      background: var(--green-dark);
-      z-index: 1020;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-    }
-
-    .nav-link {
-      color: white !important;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: all 0.25s;
-    }
-
-    .nav-link:hover {
-      background: rgba(255,255,255,0.18);
-    }
-
-    /* Sidebar – always visible, changes layout */
-    #sidebar-container {
-      background: white;
-      border-bottom: 1px solid #e0e9e0;
-      padding: 1rem;
-      margin: 1rem 0;
-    }
-
-    @media (min-width: 1200px) {
-      #sidebar-container {
-        position: fixed;
-        top: 110px;
-        bottom: 0;
-        left: 0;
-        width: 260px;
-        border-bottom: none;
-        border-right: 1px solid #e0e9e0;
-        margin: 0;
-        padding: 1.5rem 1rem;
-        overflow-y: auto;
-        z-index: 1010;
-      }
-      body { padding-left: 280px; }
-      main { max-width: 1200px; margin-left: auto; margin-right: auto; }
-    }
-
-    .vert-menu h3 {
-      background: var(--green-main);
-      color: white;
-      padding: 0.8rem;
-      margin: 1.2rem 0 0.6rem;
-      border-radius: 6px;
-      text-align: center;
-    }
-
-    .vert-menu a {
-      display: block;
-      padding: 0.7rem 1rem;
-      color: var(--green-dark);
-      text-decoration: none;
-      border-radius: 6px;
-      margin: 0.25rem 0;
-      transition: 0.2s;
-    }
-
-    .vert-menu a:hover {
-      background: var(--green-light);
-    }
-
-    /* Slideshow */
-    .slideshow-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 21 / 9;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      background: #e8f5e9;
-      margin: 2rem auto;
-    }
-
-    .slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-    }
-
-    .slide.active { opacity: 1; }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem 4rem;
-      background: linear-gradient(135deg, #f0fff4 0%, #e8f5e9 100%);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 7vw, 4.2rem);
-      font-weight: 800;
-      color: var(--green-main);
-    }
-
-    /* Cards */
-    .pillar-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.8rem;
-      border: 1px solid #e0ede4;
-      transition: all 0.25s;
-      height: 100%;
-    }
-
-    .pillar-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(10,138,74,0.14);
-    }
-
-    .pillar-card h3 { color: var(--blue-main); }
-
-    /* Footer & social */
-    .social-bar { background: var(--green-main); padding: 2rem; }
-    .social-bar a { color: white; font-size: 1.8rem; margin: 0 1.2rem; transition: 0.2s; }
-    .social-bar a:hover { transform: scale(1.3); }
-    .site-footer { background: #e8f5e9; padding: 2rem; color: #555; text-align: center; }
-  </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-
-<!-- JWT Top Menu -->
-<nav id="jwt-top-menu" class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid px-3 px-lg-4">
-    <a class="navbar-brand fw-bold text-white" href="#">EUWEB GREEN</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#jwtNav" aria-controls="jwtNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="jwtNav">
-      <ul class="navbar-nav flex-row flex-wrap gap-2 gap-lg-3">
-        <li class="nav-item"><a class="nav-link" href="#">LOGO JWT</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Safety</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Security</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#dreamModal">Dream.ZONE</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Vision</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">KYC</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Access</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- PCRR Sub Menu -->
-<nav id="pcrr-submenu" class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid px-3 px-lg-4">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pcrrNav" aria-controls="pcrrNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="pcrrNav">
-      <ul class="navbar-nav flex-row flex-wrap gap-3">
-        <li class="nav-item"><a class="nav-link" href="#">PCRR</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">NFT / NFW</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">GUPC RE/Lab</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">HousingCare</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Master Plan</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">HR Leader</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Sidebar – accordion on mobile, fixed on desktop -->
-<aside id="sidebar-container" class="accordion accordion-flush">
-
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ipCollapse" aria-expanded="true" aria-controls="ipCollapse">
-        Intellectual Property
-      </button>
-    </h2>
-    <div id="ipCollapse" class="accordion-collapse collapse show">
-      <div class="accordion-body p-0">
-        <ul class="list-unstyled px-3 py-2 vert-menu">
-          <li><a href="#">ITEG – Rotor</a></li>
-          <li><a href="#">MBGC – BioGas</a></li>
-          <li><a href="#">PBRC – Micro Algae</a></li>
-          <li><a href="#">SDGC – Desalination</a></li>
-          <li><a href="#">GSMF – Separation</a></li>
-          <li><a href="#">PCRR – Recovery</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#expoCollapse" aria-expanded="false" aria-controls="expoCollapse">
-        ExpoTV1 – Media & TV
-      </button>
-    </h2>
-    <div id="expoCollapse" class="accordion-collapse collapse">
-      <div class="accordion-body p-0">
-        <ul class="list-unstyled px-3 py-2 vert-menu">
-          <li><a href="#">Media & TV</a></li>
-          <li><a href="#">IT&C support group</a></li>
-          <li><a href="#">EDU / FAD</a></li>
-          <li><a href="#">Editorial Plan</a></li>
-          <li><a href="#">MKTG Commercial Goals</a></li>
-          <li><a href="#">JV & 30/21</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</aside>
-
-<!-- Main Content -->
-<main class="px-3 px-lg-4">
-
-  <!-- Hero -->
-  <section class="hero">
-    <h1 class="mb-4">EUWEB GREEN – Sustainable Digital Future</h1>
-    <p class="lead mb-5 mx-auto" style="max-width:780px;">
-      Integrated ecosystem supporting green innovation, digital transformation, patents, resilience and circular economy projects.
-    </p>
-    <a href="#services" class="btn btn-lg btn-primary px-5 py-3">Discover Our Solutions</a>
-  </section>
-
-  <!-- Slideshow -->
-  <div class="slideshow-wrapper">
-    <img class="slide active" src="https://images.unsplash.com/photo-1500384066616-8a8d547abfc9?auto=format&fit=crop&q=80" alt="Green technology">
-    <img class="slide" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80" alt="Nature integration">
-    <img class="slide" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80" alt="Solar energy">
-    <img class="slide" src="https://images.unsplash.com/photo-1509395596868-d7968f398e39?auto=format&fit=crop&q=80" alt="Renewable future">
-  </div>
-
-  <!-- Services Section -->
-  <section id="services" class="py-5">
-    <h2 class="text-center mb-5 fw-bold" style="color:var(--green-main)">Our Core Services</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      <div class="col">
-        <div class="pillar-card">
-          <h3>Sustainable Innovation</h3>
-          <p>Eco-friendly product & service design aligned with circular economy and EU Green Deal goals.</p>
+    <header class="site-header">
+        <div class="logo-container">
+            <a href=""><img src="images/faviconservices--32x32.png" alt="EUWEB GREEN Logo" height="30">-</a>
+            <span class="logo text-warning">EUWEB GREEN-services</span>
         </div>
-      </div>
-      <div class="col">
-        <div class="pillar-card">
-          <h3>Digital Ecosystem</h3>
-          <p>Unified platforms, AI tools, eCommerce and transparent collaboration infrastructure.</p>
-        </div>
-      </div>
-      <div class="col">
-        <div class="pillar-card">
-          <h3>Patents & Research Support</h3>
-          <p>Structure, visibility and development path for green-oriented patents and concepts.</p>
-        </div>
-      </div>
-      <div class="col">
-        <div class="pillar-card">
-          <h3>AI-Enhanced Tools</h3>
-          <p>AI-assisted content generation, documentation and workflow automation.</p>
-        </div>
-      </div>
-      <div class="col">
-        <div class="pillar-card">
-          <h3>Resilience & Impact</h3>
-          <p>Long-term sustainable digital strategies with measurable environmental impact.</p>
-        </div>
-      </div>
-      <div class="col">
-        <div class="pillar-card text-center d-flex flex-column justify-content-center align-items-center">
-          <h3>Guide Manual</h3>
-          <a href="JWT_project_EN.pdf" download class="btn btn-success mt-3 px-4 py-2">Download PDF</a>
-        </div>
-      </div>
+        <nav class="menu">
+            <a href="#">overview</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Services</a>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <img src="images/PCRR_01 (1).jpg" alt="Vision 2030" class="responsive-img my-3">
     </div>
-  </section>
 
-</main>
+    <!-- JWT Top Menu -->
+    <nav id="jwt-top-menu" class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid px-3 px-lg-4">
+            <a class="navbar-brand fw-bold text-warning" href="#">EUWEB GREEN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#jwtNav"
+                aria-controls="jwtNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="jwtNav">
+                <ul class="navbar-nav flex-row flex-wrap gap-2 gap-lg-3">
+                    <li class="nav-item"><a href=""><img src="images/faviconservices--32x32.png" alt="EUWEB GREEN Logo"
+                                height="30">-</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Safety</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Security</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                            data-bs-target="#dreamModal">Dream.ZONE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">KYC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Access</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<!-- Dream.ZONE Modal -->
-<div class="modal fade" id="dreamModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Dream.ZONE / Access Request</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <p>Submit your interest for Dream.ZONE or related access / KYC process.</p>
-        <form>
-          <div class="mb-3">
-            <label class="form-label">Email address</label>
-            <input type="email" class="form-control" placeholder="your@email.com">
-          </div>
-          <button type="submit" class="btn btn-success w-100">Submit Request</button>
-        </form>
-      </div>
+    <!-- PCRR Sub Menu -->
+    <nav id="pcrr-submenu" class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid px-3 px-lg-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pcrrNav"
+                aria-controls="pcrrNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="pcrrNav">
+                <ul class="navbar-nav flex-row flex-wrap gap-3">
+                    <li class="nav-item"><a class="nav-link" href="#">PCRR</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">NFT / NFW</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">GUPC RE/Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">HousingCare</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Master Plan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">HR Leader</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar – accordion on mobile, fixed on desktop -->
+    <aside id="sidebar-container" class="accordion accordion-flush">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ipCollapse"
+                    aria-expanded="true" aria-controls="ipCollapse">
+                    Intellectual Property
+                </button>
+            </h2>
+            <div id="ipCollapse" class="accordion-collapse collapse show">
+                <div class="accordion-body p-0">
+                    <ul class="list-unstyled px-3 py-2 vert-menu">
+                        <li><a href="#">ITEG – Rotor</a></li>
+                        <li><a href="#">MBGC – BioGas</a></li>
+                        <li><a href="#">PBRC – Micro Algae</a></li>
+                        <li><a href="#">SDGC – Desalination</a></li>
+                        <li><a href="#">GSMF – Separation</a></li>
+                        <li><a href="#">PCRR – Recovery</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#expoCollapse" aria-expanded="false" aria-controls="expoCollapse">
+                    ExpoTV1 – Media & TV
+                </button>
+            </h2>
+            <div id="expoCollapse" class="accordion-collapse collapse">
+                <div class="accordion-body p-0">
+                    <ul class="list-unstyled px-3 py-2 vert-menu">
+                        <li><a href="#">Media & TV</a></li>
+                        <li><a href="#">IT&C support group</a></li>
+                        <li><a href="#">EDU / FAD</a></li>
+                        <li><a href="#">Editorial Plan</a></li>
+                        <li><a href="#">MKTG Commercial Goals</a></li>
+                        <li><a href="#">JV & 30/21</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="px-3 px-lg-4">
+
+        <!-- Hero -->
+        <section class="hero">
+            <h1 class="mb-4">EUWEB GREEN – Sustainable Digital Future</h1>
+            <p class="lead mb-5 mx-auto" style="max-width:780px;">
+                Integrated ecosystem supporting green innovation, digital transformation, patents, resilience and
+                circular economy projects.
+            </p>
+            <a href="#services" class="btn btn-lg btn-primary px-5 py-3">Discover Our Solutions</a>
+        </section>
+
+        <!-- Slideshow -->
+        <div class="slideshow-wrapper">
+            <img class="slide active"
+                src="https://images.unsplash.com/photo-1500384066616-8a8d547abfc9?auto=format&fit=crop&q=80"
+                alt="Green technology">
+            <img class="slide"
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80"
+                alt="Nature integration">
+            <img class="slide"
+                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
+                alt="Solar energy">
+            <img class="slide"
+                src="https://images.unsplash.com/photo-1509395596868-d7968f398e39?auto=format&fit=crop&q=80"
+                alt="Renewable future">
+        </div>
+
+        <!-- Services Section -->
+        <section id="services" class="py-5">
+            <h2 class="text-center mb-5 fw-bold" style="color:var(--green-main)">Our Core Services</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="pillar-card">
+                        <h3>Sustainable Innovation</h3>
+                        <p>Eco-friendly product & service design aligned with circular economy and EU Green Deal goals.
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pillar-card">
+                        <h3>Digital Ecosystem</h3>
+                        <p>Unified platforms, AI tools, eCommerce and transparent collaboration infrastructure.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pillar-card">
+                        <h3>Patents & Research Support</h3>
+                        <p>Structure, visibility and development path for green-oriented patents and concepts.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pillar-card">
+                        <h3>AI-Enhanced Tools</h3>
+                        <p>AI-assisted content generation, documentation and workflow automation.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pillar-card">
+                        <h3>Resilience & Impact</h3>
+                        <p>Long-term sustainable digital strategies with measurable environmental impact.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pillar-card text-center d-flex flex-column justify-content-center align-items-center">
+                        <h3>Guide Manual</h3>
+                        <a href="JWT_project_EN.pdf" download class="btn btn-success mt-3 px-4 py-2">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Dream.ZONE Modal -->
+    <div class="modal fade" id="dreamModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dream.ZONE / Access Request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Submit your interest for Dream.ZONE or related access / KYC process.</p>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input type="email" class="form-control" placeholder="your@email.com">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- Social Bar -->
-<div class="social-bar text-center">
-  <a href="#!"><i class="fab fa-facebook-f"></i></a>
-  <a href="#!"><i class="fab fa-x-twitter"></i></a>
-  <a href="#!"><i class="fab fa-linkedin-in"></i></a>
-  <a href="#!"><i class="fab fa-instagram"></i></a>
-</div>
+    <!-- Social Bar -->
+    <div class="social-bar text-center">
+        <a href="#!"><i class="fab fa-facebook-f"></i></a>
+        <a href="#!"><i class="fab fa-x-twitter"></i></a>
+        <a href="#!"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#!"><i class="fab fa-instagram"></i></a>
+    </div>
 
-<!-- Footer -->
-<footer class="site-footer">
-  <p>© 2026 EUWEB GREEN Project • All rights reserved.</p>
-</footer>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>© 2026 EUWEB GREEN Project • All rights reserved.</p>
+    </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
-<script>
-// Simple slideshow
-const slides = document.querySelectorAll('.slide');
-let current = 0;
+    <script>
+        // Simple slideshow
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
 
-function nextSlide() {
-  slides[current].classList.remove('active');
-  current = (current + 1) % slides.length;
-  slides[current].classList.add('active');
-}
+        function nextSlide() {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }
 
-if (slides.length > 0) {
-  slides[0].classList.add('active');
-  setInterval(nextSlide, 8000);
-}
-</script>
+        if (slides.length > 0) {
+            slides[0].classList.add('active');
+            setInterval(nextSlide, 8000);
+        }
+    </script>
 
 </body>
+
 </html>
