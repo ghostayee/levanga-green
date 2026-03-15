@@ -160,30 +160,30 @@ body {
   background: var(--green-light);
 }
 
-/* Slideshow */
-.slideshow-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  background: #e8f5e9;
-  margin: 2rem auto;
+/* slide show*/
+.slideshow {
+width: 100%;
+max-width: 1920px;
+height: 450px;
+margin-left: auto;
+margin-right: auto;
+overflow: hidden;
+position: relative;
 }
 
 .slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.2s ease;
+width: 100%;
+height: 450px;
+object-fit: cover;
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0;
+transition: opacity 5s ease;
 }
 
 .slide.active {
-  opacity: 1;
+opacity: 1;
 }
 
 /* Hero */
