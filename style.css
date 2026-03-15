@@ -1,0 +1,235 @@
+:root {
+  --green: #28a745;
+  --darkgreen: #1e7e34;
+  --lightgreen: #d4edda;
+  --very-light: #e9f7ef;
+  --gray: #f8f9fa;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 1. Fixed Horizontal Main Menu (JWT) */
+#main-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, var(--green), var(--darkgreen));
+  color: white;
+  z-index: 1000;
+  padding: 10px 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+#main-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#main-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+#main-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 2. Fixed Horizontal PCRR Sub-Menu */
+#pcrr-menu {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  right: 0;
+  background: var(--darkgreen);
+  color: white;
+  z-index: 999;
+  padding: 8px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#pcrr-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+#pcrr-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+#pcrr-menu a:hover {
+  background: #155724;
+}
+
+/* 3. Left Vertical Menus (IP + ExpoTV1) */
+#left-sidebar {
+  position: fixed;
+  top: 110px;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  background: var(--very-light);
+  padding: 15px 10px;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+  z-index: 998;
+}
+
+.vert-menu h3 {
+  background: var(--green);
+  color: white;
+  padding: 10px;
+  margin: 15px 0 8px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.vert-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vert-menu li {
+  margin: 4px 0;
+}
+
+.vert-menu a {
+  color: var(--darkgreen);
+  text-decoration: none;
+  display: block;
+  padding: 9px 12px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.vert-menu a:hover {
+  background: var(--lightgreen);
+}
+
+/* Banner Carousel */
+.banner-carousel {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  margin: 140px 0 30px 260px;
+  background: #f0fff0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8em;
+  color: var(--darkgreen);
+  background-size: cover;
+  background-position: center;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* Main Content */
+#content {
+  margin-left: 260px;
+  padding: 20px;
+  max-width: 1100px;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.matrix-item {
+  background: var(--lightgreen);
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid var(--green);
+}
+
+/* Modal for Dream.ZONE popup */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  max-width: 500px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2em;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close:hover {
+  color: #333;
+}
+
+@media (max-width: 992px) {
+  #left-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  #content,
+  .banner-carousel {
+    margin-left: 0;
+  }
+
+  .banner-carousel {
+    margin: 180px 20px 30px;
+  }
+}

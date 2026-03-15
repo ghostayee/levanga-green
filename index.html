@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JWT PresentationSpace Expanded Demo – Kennie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 1. JWT Main Horizontal Menu -->
+    <nav id="main-menu">
+        <ul>
+            <li><a href="#">LOGO JWT / Home</a></li>
+            <li><a href="#">JWT Safety</a></li>
+            <li><a href="#">JWT Security</a></li>
+            <li><a href="#" onclick="openModal('dream-zone')">Country Dream.ZONE</a></li>
+            <li><a href="#">AboutUs</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#" onclick="openModal('kyc')">KYC Light</a></li>
+            <li><a href="#" onclick="openModal('kyc')">KYC Strong</a></li>
+            <li><a href="#" onclick="openModal('access')">Access</a></li>
+        </ul>
+    </nav>
+
+    <!-- 2. PCRR Horizontal Sub-Menu -->
+    <nav id="pcrr-menu">
+        <ul>
+            <li><a href="#">PCRR</a></li>
+            <li><a href="#">NFT/NFW</a></li>
+            <li><a href="#">GUPC RE/Lab</a></li>
+            <li><a href="#">GUPC HousingCare</a></li>
+            <li><a href="#">Master Plan</a></li>
+            <li><a href="#">HR Leader</a></li>
+            <li><a href="#">HR Blog/Chat</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3. Left Vertical Menus -->
+    <aside id="left-sidebar">
+        <div class="vert-menu">
+            <h3>IP – Intellectual Property</h3>
+            <ul>
+                <li><a href="#">IP - Intellectual Property</a></li>
+                <li><a href="#">ITEG – Rotor</a></li>
+                <li><a href="#">MBGC – BioGas</a></li>
+                <li><a href="#">PBRC – Micro Algae</a></li>
+                <li><a href="#">SIDR – Agro & Sport</a></li>
+                <li><a href="#">SDGC – Desalination</a></li>
+                <li><a href="#">GSMF – Separation</a></li>
+                <li><a href="#">GFSS – EMG Separation</a></li>
+                <li><a href="#">PCRR – Recovery & Resilience</a></li>
+            </ul>
+        </div>
+
+        <div class="vert-menu">
+            <h3>ExpoTV1 – Media & TV</h3>
+            <ul>
+                <li><a href="#">ExpoTV1 - Media&TV</a></li>
+                <li><a href="#">IT&C support group</a></li>
+                <li><a href="#">EDU / FAD</a></li>
+                <li><a href="#">Editorial Plan</a></li>
+                <li><a href="#">MKTG Commercial Goals</a></li>
+                <li><a href="#">MKT & IP</a></li>
+                <li><a href="#">II & SRB</a></li>
+                <li><a href="#">JV & 30/21</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Rotating Banner Carousel (placeholder) -->
+    <div class="banner-carousel">
+        <div class="slide active" style="background:#f0fff0;">WIPO / EPO GREEN Patents – Rotating Banner</div>
+        <div class="slide" style="background:#e6ffe6;">Dream.ZONE & NFT Integration</div>
+        <div class="slide" style="background:#d4edda;">PCRR Recovery & Resilience</div>
+    </div>
+
+    <!-- Main PresentationSpace Content -->
+    <main id="content">
+        <h1>PresentationSpace – GREEN Themes & Patents Demo (Expanded)</h1>
+        <p>This is a faithful expansion matching the blueprint: 3 fixed menus + rotating banner + popup example. Scroll
+            to test stickiness. On approval, clone to pcrr-jwt.eu/yyyy subfolders with real /comm/ links, full plugins
+            (Dream.ZONE cart, AI.Text, etc.).</p>
+
+        <section>
+            <h2>IP Projects Matrix Teaser</h2>
+            <div class="matrix-grid">
+                <div class="matrix-item"><strong>ITEG – Rotor</strong><br>Advanced rotary systems</div>
+                <div class="matrix-item"><strong>MBGC – BioGas</strong><br>Biogas production & circular</div>
+                <div class="matrix-item"><strong>PBRC – Micro Algae</strong><br>Microalgae bioreactors</div>
+                <div class="matrix-item"><strong>SDGC – Desalination</strong><br>Solar desalination GREEN</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Next Steps Placeholder</h2>
+            <p>Integrate: Sell.FUNCTION cart, Own.BLOG chat, real Dream.ZONE form submission to /comm/, animated
+                transitions, mobile accordion for vertical menus.</p>
+        </section>
+    </main>
+
+    <!-- Dream.ZONE Modal Example -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Dream.ZONE / KYC / Access Form</h2>
+            <p>Popup placeholder: Enter country/email for Dream.ZONE acquisition or KYC process.</p>
+            <form>
+                <label>Email: <input type="email" placeholder="your@email.com"
+                        style="width:100%; padding:8px; margin:10px 0;"></label><br>
+                <button type="button"
+                    style="background:var(--green); color:white; padding:10px 20px; border:none; border-radius:4px; cursor:pointer;">Submit
+                    to /comm/dream.zone</button>
+            </form>
+            <p style="margin-top:15px; font-size:0.9em;">(In production: AJAX to /comm/, cart append, popup movable)</p>
+        </div>
+    </div>
+
+    <script>
+        // Rotating banner
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
+
+        // Modal functions
+        function openModal(type) {
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        window.onclick = function (e) {
+            if (e.target === document.getElementById('modal')) closeModal();
+        }
+    </script>
+
+</body>
+
+</html>
