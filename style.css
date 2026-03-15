@@ -1,235 +1,185 @@
 :root {
-  --green: #28a745;
-  --darkgreen: #1e7e34;
-  --lightgreen: #d4edda;
-  --very-light: #e9f7ef;
-  --gray: #f8f9fa;
+  --green-main: #0a8a4a;
+  --green-dark: #086c3a;
+  --green-light: #d4f0d9;
+  --green-very-light: #e8f7eb;
+  --blue-main: #1a73e8;
+  --text-main: #2d2d2d;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #fff;
-  color: #333;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: var(--green-very-light);
+  color: var(--text-main);
   line-height: 1.6;
-}
-
-/* 1. Fixed Horizontal Main Menu (JWT) */
-#main-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to right, var(--green), var(--darkgreen));
-  color: white;
-  z-index: 1000;
-  padding: 10px 20px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-#main-menu ul {
-  list-style: none;
   margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 5px;
+  padding-top: 110px; /* space for fixed menus on desktop */
 }
 
-#main-menu a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 14px;
-  font-weight: bold;
-  border-radius: 4px;
-  transition: 0.3s;
+@media (max-width: 991px) {
+  body {
+    padding-top: 70px;
+  } /* collapsed menus take less space */
 }
 
-#main-menu a:hover {
-  background: rgba(255, 255, 255, 0.2);
+/* Top menus */
+#jwt-top-menu {
+  background: linear-gradient(90deg, var(--green-main), var(--green-dark));
+  box-shadow: var(--shadow-sm);
+  z-index: 1030;
 }
 
-/* 2. Fixed Horizontal PCRR Sub-Menu */
-#pcrr-menu {
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  background: var(--darkgreen);
-  color: white;
-  z-index: 999;
-  padding: 8px 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+#pcrr-submenu {
+  background: var(--green-dark);
+  z-index: 1020;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
-#pcrr-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
+.nav-link {
+  color: white !important;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.25s;
 }
 
-#pcrr-menu a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: 0.3s;
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
 
-#pcrr-menu a:hover {
-  background: #155724;
+/* Sidebar – always visible, changes layout */
+#sidebar-container {
+  background: white;
+  border-bottom: 1px solid #e0e9e0;
+  padding: 1rem;
+  margin: 1rem 0;
 }
 
-/* 3. Left Vertical Menus (IP + ExpoTV1) */
-#left-sidebar {
-  position: fixed;
-  top: 110px;
-  left: 0;
-  bottom: 0;
-  width: 240px;
-  background: var(--very-light);
-  padding: 15px 10px;
-  overflow-y: auto;
-  border-right: 1px solid #ccc;
-  z-index: 998;
+@media (min-width: 1200px) {
+  #sidebar-container {
+    position: fixed;
+    top: 110px;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    border-bottom: none;
+    border-right: 1px solid #e0e9e0;
+    margin: 0;
+    padding: 1.5rem 1rem;
+    overflow-y: auto;
+    z-index: 1010;
+  }
+  body {
+    padding-left: 280px;
+  }
+  main {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .vert-menu h3 {
-  background: var(--green);
+  background: var(--green-main);
   color: white;
-  padding: 10px;
-  margin: 15px 0 8px;
-  border-radius: 4px;
+  padding: 0.8rem;
+  margin: 1.2rem 0 0.6rem;
+  border-radius: 6px;
   text-align: center;
-  font-size: 1.1em;
-}
-
-.vert-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.vert-menu li {
-  margin: 4px 0;
 }
 
 .vert-menu a {
-  color: var(--darkgreen);
-  text-decoration: none;
   display: block;
-  padding: 9px 12px;
-  border-radius: 4px;
-  transition: 0.3s;
+  padding: 0.7rem 1rem;
+  color: var(--green-dark);
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 0.25rem 0;
+  transition: 0.2s;
 }
 
 .vert-menu a:hover {
-  background: var(--lightgreen);
+  background: var(--green-light);
 }
 
-/* Banner Carousel */
-.banner-carousel {
+/* Slideshow */
+.slideshow-wrapper {
   position: relative;
-  height: 220px;
+  width: 100%;
+  aspect-ratio: 21 / 9;
   overflow: hidden;
-  margin: 140px 0 30px 260px;
-  background: #f0fff0;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background: #e8f5e9;
+  margin: 2rem auto;
 }
 
 .slide {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 0;
-  transition: opacity 1s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8em;
-  color: var(--darkgreen);
-  background-size: cover;
-  background-position: center;
+  transition: opacity 1.2s ease;
 }
 
 .slide.active {
   opacity: 1;
 }
 
-/* Main Content */
-#content {
-  margin-left: 260px;
-  padding: 20px;
-  max-width: 1100px;
-}
-
-.matrix-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin: 30px 0;
-}
-
-.matrix-item {
-  background: var(--lightgreen);
-  padding: 15px;
-  border-radius: 6px;
+/* Hero */
+.hero {
   text-align: center;
-  border: 1px solid var(--green);
+  padding: 3rem 1rem 4rem;
+  background: linear-gradient(135deg, #f0fff4 0%, #e8f5e9 100%);
 }
 
-/* Modal for Dream.ZONE popup */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
+.hero h1 {
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 800;
+  color: var(--green-main);
 }
 
-.modal-content {
+/* Cards */
+.pillar-card {
   background: white;
-  padding: 30px;
-  max-width: 500px;
-  border-radius: 8px;
-  position: relative;
+  border-radius: 10px;
+  padding: 1.8rem;
+  border: 1px solid #e0ede4;
+  transition: all 0.25s;
+  height: 100%;
 }
 
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 2em;
-  cursor: pointer;
-  color: #aaa;
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(10, 138, 74, 0.14);
 }
 
-.close:hover {
-  color: #333;
+.pillar-card h3 {
+  color: var(--blue-main);
 }
 
-@media (max-width: 992px) {
-  #left-sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid #ccc;
-  }
-
-  #content,
-  .banner-carousel {
-    margin-left: 0;
-  }
-
-  .banner-carousel {
-    margin: 180px 20px 30px;
-  }
+/* Footer & social */
+.social-bar {
+  background: var(--green-main);
+  padding: 2rem;
+}
+.social-bar a {
+  color: white;
+  font-size: 1.8rem;
+  margin: 0 1.2rem;
+  transition: 0.2s;
+}
+.social-bar a:hover {
+  transform: scale(1.3);
+}
+.site-footer {
+  background: #e8f5e9;
+  padding: 2rem;
+  color: #555;
+  text-align: center;
 }
